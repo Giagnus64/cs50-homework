@@ -1,0 +1,28 @@
+0.What is pneumonoultramicroscopicsilicovolcanoconiosis?
+That word is the longest word in the english language dictionary, and therefore the upper bound on number of characters entered into the spell checker.
+
+1.According to its man page, what does getrusage do?
+getrusage is a function that gets passed an integer representing the resaurce usage statistics for the chosen process, and then stores them in the struct passed to the function.
+
+2.Per that same man page, how many members are in a variable of type struct rusage?
+There are 16 members in the struct.
+
+3.Why do you think we pass before and after by reference (instead of by value) to calculate, even though we’re not changing their contents?
+The before and after are passed in by reference because they certainly could change depending on what the IDE or computer is doing at that time. Passing by reference ]
+also allows the function to operate faster, rather than having to take time to copy the structures themselves on top of doing calculation.
+This allows us to take an accurate representation of what time is actually needed by the computer.
+
+4.Explain as precisely as possible, in a paragraph or more, how main goes about reading words from a file. In other words, convince us that you indeed understand how that function’s for loop works.
+The first for loop in main tries to iterate through each character in the text given by the pointer created on line 55 (the file opened). The next if statement
+checks to make sure the character is alphabetical (or an apostrophe), and that condition appends the character to the word array. The next if statement makes sure
+the word is not too long, and if so, skips it entirely while preparing the array for a new word. Falling out of that loop, if the next character in the file is a digit,
+the code will consume the rest of the word and initialize the array once again. Otherwise, an entire word must be found, therefore the string is capped with a NULL
+symbol. The word is passed into the spellchecker, the word counter is added by 1, and if the worse returns false, the word is counted as misspelled, and the array is
+initialized for a new word.
+
+5.Why do you think we used fgetc to read each word’s characters one at a time rather than use fscanf with a format string like "%s" to read whole words at a time? Put another way, what problems might arise by relying on fscanf alone?
+The fgetc function allows us to check character by character if the word is actually a word, discarding the string if it doesn't fit our definition of "word". Fscanf
+would require additional check to each string given by the function. Fscanf might also not return words that are words because of specific formatting errors.
+
+6.Why do you think we declared the parameters for check and load as const (which means "constant")?
+The values passed into check and load are finite, there should never be changed within one pass of each function.
