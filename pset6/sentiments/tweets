@@ -1,0 +1,57 @@
+#!/usr/bin/env python3
+import sys
+import os
+
+from helpers import get_user_timeline
+from analyzer import Analyzer
+from termcolor import colored
+
+# TODO
+# ensure proper usage
+if len(sys.argv) != 2:
+    sys.exit("Usage: ./tweets twitterhandle")
+
+# absolute paths to lists
+positives = os.path.join(sys.path[0], "positive-words.txt")
+negatives = os.path.join(sys.path[0], "negative-words.txt")
+
+# instantiate analyzer
+analyzer = Analyzer(positives, negatives)
+
+# Get tweets per function in helpers and check for error
+tweets = get_user_timeline(sys.argv[1], 50)
+if tweets == None:
+    sys.exit("Tweets unavailable.")
+
+#iterate through tweets
+for tweet in tweets:
+    #analyze tweets using previously written function
+    score = analyzer.analyze(tweet)
+    #print with green if tweetscore is positive
+    if score > 0:
+        print(colored("{} {}".format(score,tweet), "green"))
+    # same with red and negative
+    elif score < 0:
+        print(colored("{} {}".format(score,tweet), "red"))
+    #same with yellow and neutral
+    else:
+        print(colored("{} {}".format(score,tweet), "yellow"))
+exit(0)
+
+
+
+
+#printout of tweets for get_user_timeline testing purposes
+"""file = open("tweettest.txt", "w")
+for tweet in tweets:
+    file.write(tweet + "\n")
+
+file.close()"""
+
+
+
+
+
+
+
+

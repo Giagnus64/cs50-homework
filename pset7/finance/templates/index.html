@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Portfolio
+{% endblock %}
+
+{% block main %}
+ <table class="table table-striped">
+        <thead>
+            <tr><!-- this doesn't need to be edited -->
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Shares</th>
+                <th>Price</th>
+                <th>TOTAL</th>
+            </tr>
+        </thead>
+        <!-- Total cash and stocks goes here at table foot -->
+        <tfoot>
+            <tr>
+                <td colspan="4"></td>
+                <td>{{ usertotal }}</td>
+            </tr>
+        </tfoot>
+        <tbody>
+
+                <tr><!-- Look up jinja to pass in proper values-->
+                    {% for stock in stockrows%}
+                    <td>{{ stock["stocksymbol"] }}</td>
+                    <td>{{ stock["stockname"] }}</td>
+                    <td>{{ stock["qtyofshares"] }}</td>
+                    <td>{{ stockprices[loop.index0] }}</td>
+                    <td>{{ stockvalues[loop.index0] }}</td>
+                </tr>{% endfor %}
+
+            <tr><!-- total cash goes here -->
+                <td colspan="4">CASH</td>
+                <td>{{ currentcash }}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

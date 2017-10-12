@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Portfolio
+{% endblock %}
+
+{% block main %}
+ <table class="table table-striped">
+        <caption>STOCKS BOUGHT</caption>
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Shares Bought</th>
+                <th>Price</th>
+                <th>Transacted</th>
+            </tr>
+        </thead>
+        <tbody>
+
+                <tr><!-- Look up jinja to pass in proper values-->
+                    {% for stock in buyhistory %}
+                    <td>{{ stock["stocksymbol"] }}</td>
+                    <td>{{ stock["stockname"] }}</td>
+                    <td>{{ stock["qtyofshares"] }}</td>
+                    <td>{{ stock["stockprice"] }}</td>
+                    <td>{{ stock["datetime"] }}</td>
+                </tr>{% endfor %}
+
+
+        </tbody>
+    </table>
+
+    <table class="table table-striped">
+        <caption>STOCKS SOLD</caption>
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Shares Sold</th>
+                <th>Price</th>
+                <th>Transacted</th>
+            </tr>
+        </thead>
+        <tbody>
+
+                <tr><!-- Look up jinja to pass in proper values-->
+                    {% for stock in sellhistory %}
+                    <td>{{ stock["stocksymbol"] }}</td>
+                    <td>{{ stock["stockname"] }}</td>
+                    <td>{{ stock["qtyofshares"] }}</td>
+                    <td>{{ stock["stockprice"] }}</td>
+                    <td>{{ stock["datetime"] }}</td>
+                </tr>{% endfor %}
+
+
+        </tbody>
+    </table>
+{% endblock %}
