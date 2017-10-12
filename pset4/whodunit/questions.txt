@@ -1,0 +1,41 @@
+1.  What’s stdint.h?
+Stdint.h is a header that adds fixed-width integer types to a c program. It adds new types to help portability among different hardwares and programs,
+especially in cases where the typical integer types are implementation based.
+
+2. What’s the point of using uint8_t, uint32_t, int32_t, and uint16_t in a program?
+The types help define integers that have a fixed, in this case, exact, number of bytes across each program that uses the data. This prevents the datatypes from
+bring changed, or defined by the implementation, and therefore allows more flexibility within the implementation across programs.
+
+3. How many bytes is a BYTE, a DWORD, a LONG, and a WORD, respectively?
+BYTE = 1. DWORD = 4. LONG = 4. WORD = 2.
+
+4. What (in ASCII, decimal, or hexadecimal) must the first two bytes of any BMP file be? Leading bytes used to identify file formats (with high probability)
+are generally called "magic numbers."
+In ASCII, BM. In Hexadecimal, 0x42 0x4d.
+
+5. What’s the difference between bfSize and biSize?
+bfSize holds the size for the entire bitmap file, including itself. biSize only holds the size of the structure that holds the information for INFOHEADER.
+
+6. What does it mean if biHeight is negative?
+If biHeight is negative, it means that the bitmap starts at the top right corner, and is formed all the way down to the bottom.
+
+7. What field in BITMAPINFOHEADER specifies the BMP’s color depth (i.e., bits per pixel)?
+The field biBitCount defines the color depth.
+
+8. Why might fopen return NULL in lines 24 and 32 of copy.c?
+Fopen might return NULL in line 24 because the user input the filename of a file that doesn't exist. It might return NULL in line 32 because the
+filename that the user inputs could already exist, and the file could not be written.
+
+9.Why is the third argument to fread always 1 in our code?
+Each structure that fread is reading (and eventually writing) is predefined, therefore the third argument (representing the quantity of what is to be read and
+copied) is only 1 as in, 1 Structure per BITMAP file.
+
+10. What value does line 65 of copy.c assign to padding if bi.biWidth is 3?
+Line 65 will have a value of 3.
+
+11. What does fseek do?
+Fseek moves the position that the program is reading from in the file. It does so by moving ahead a defined number of positions passed as the middle argument
+to the function.
+
+12. What is SEEK_CUR?
+SEEK_CUR is the third argument passed to fseek, and is defined as the current position of the file pointer.
